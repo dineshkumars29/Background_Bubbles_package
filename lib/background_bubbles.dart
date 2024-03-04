@@ -1,7 +1,3 @@
-// Copyright 2024 Dinesh Kumar. All rights reserved.
-// Use of this source code is governed by a MIT license that can be
-// found in the LICENSE file.
-
 library background_bubbles;
 
 import 'dart:math';
@@ -9,13 +5,12 @@ import 'package:flutter/material.dart';
 
 class BubblesAnimation extends StatefulWidget {
   const BubblesAnimation(
-      {Key? key,
-        this.particleCount,
-        this.particleColor = Colors.red,
-        this.particleRadius,
-        this.backgroundColor,
-        this.widget})
-      : super(key: key);
+      {super.key,
+      this.particleCount,
+      this.particleColor = Colors.red,
+      this.particleRadius,
+      this.backgroundColor,
+      this.widget});
 
   /// The count of the particles.
   final int? particleCount;
@@ -76,7 +71,7 @@ class _BubblesAnimationState extends State<BubblesAnimation>
   Widget build(BuildContext context) {
     /// the total count - set here
     particles = List.generate(widget.particleCount ?? 500,
-            (_) => Particle(context, widget.particleRadius ?? 3.0));
+        (_) => Particle(context, widget.particleRadius ?? 3.0));
     return Container(
       height: MediaQuery.sizeOf(context).height,
       width: MediaQuery.sizeOf(context).width,
@@ -86,7 +81,7 @@ class _BubblesAnimationState extends State<BubblesAnimation>
           onPanUpdate: _updateParticlePosition,
           child: CustomPaint(
             painter:
-            FluidsPainter(particles, _controller, widget.particleColor),
+                FluidsPainter(particles, _controller, widget.particleColor),
             size: MediaQuery.of(context).size,
           ),
         ),
