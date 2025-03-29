@@ -155,8 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 📸 Screenshots
 
-<p align="center"> <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_1.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000"> <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_2.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000"> </p>
-
+<div style="display: flex; justify-content: space-around;">
+    <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_1.gif" alt="Colorful animated bubbles floating in the background" width="400">
+    <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_2.gif" alt="Colorful animated bubbles floating in the background" width="400">
+</div>
 ## Features
 
 ✅ Smooth Animation with Isolate:
