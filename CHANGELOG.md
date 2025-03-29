@@ -13,3 +13,7 @@
 ## 0.0.3
 
 * contents for documents
+
+## 1.0.0
+
+* It utilizes `Isolate` for smooth performance and offers customizable shapes, colors, speeds, and sizes.
