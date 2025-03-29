@@ -153,11 +153,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ```
 
-<img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000">
+📸 Screenshots
+
+<p align="center"> <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_1.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000"> <img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_2.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000"> </p>
 
 ## Features
 
-unique experiences where randomness is combined with purposeful design
+✅ Smooth Animation with Isolate:
+
+Uses Isolate to keep the animation running smoothly without blocking the main UI thread.
+
+✅ Customizable Bubble Shape:
+
+Choose between circle and square shapes for your bubbles.
+
+✅ Customizable Particle Count & Size:
+
+Adjust the number and size of the particles to achieve the desired effect.
+
+✅ Full-Screen Background:
+
+Perfect for creating animated backgrounds for your login pages, splash screens, or home pages.
 
 ## Getting started
 
