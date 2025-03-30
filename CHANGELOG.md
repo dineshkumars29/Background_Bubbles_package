@@ -17,3 +17,7 @@
 ## 1.0.0
 
 * It utilizes `Isolate` for smooth performance and offers customizable shapes, colors, speeds, and sizes.
+
+## 1.0.1
+
+* web support.
