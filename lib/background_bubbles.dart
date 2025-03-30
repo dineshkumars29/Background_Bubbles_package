@@ -1,8 +1,7 @@
 library background_bubbles;
 
-
 import 'dart:math';
-import 'dart:isolate';
+import 'package:flutter/foundation.dart'; // Import for compute()
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -44,11 +43,12 @@ class BubblesAnimation extends StatefulWidget {
   State<BubblesAnimation> createState() => _BubblesAnimationState();
 }
 
-class _BubblesAnimationState extends State<BubblesAnimation> with SingleTickerProviderStateMixin {
+class _BubblesAnimationState extends State<BubblesAnimation>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late List<Particle> particles;
   late Size screenSize;
-  Isolate? _isolate;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -65,31 +65,28 @@ class _BubblesAnimationState extends State<BubblesAnimation> with SingleTickerPr
     screenSize = MediaQuery.of(context).size;
     particles = List.generate(
       widget.particleCount ?? 500,
-          (_) => Particle(screenSize, widget.particleRadius ?? 3.0, widget.particleSpeed, widget.shape),
+      (_) => Particle(screenSize, widget.particleRadius ?? 3.0,
+          widget.particleSpeed, widget.shape),
     );
     _startParticleUpdates();
   }
 
-  /// Starts an isolate for updating particle positions to prevent UI thread blockage.
-  void _startParticleUpdates() async {
-    final receivePort = ReceivePort();
-    _isolate = await Isolate.spawn(_particleUpdateLoop, receivePort.sendPort);
-    receivePort.listen((_) {
-      if (mounted) setState(() {});
+  /// Starts a timer to update particles with compute() for web support.
+  void _startParticleUpdates() {
+    _timer = Timer.periodic(const Duration(milliseconds: 16), (timer) async {
+      if (mounted) {
+        /// Use compute() for particle updates on all platforms
+        particles = await compute(updateParticles, particles);
+        setState(() {});
+      }
     });
   }
 
-  /// A separate isolate function that sends update signals periodically.
-  static void _particleUpdateLoop(SendPort sendPort) {
-    Timer.periodic(const Duration(milliseconds: 16), (timer) {
-      sendPort.send(null);
-    });
-  }
-
+  /// Stops the timer when disposing the widget.
   @override
   void dispose() {
     _controller.dispose();
-    _isolate?.kill(priority: Isolate.immediate);
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -102,7 +99,8 @@ class _BubblesAnimationState extends State<BubblesAnimation> with SingleTickerPr
       child: Stack(
         children: [
           CustomPaint(
-            painter: FluidsPainter(particles, _controller, widget.particleColor, widget.shape),
+            painter: FluidsPainter(
+                particles, _controller, widget.particleColor, widget.shape),
             size: screenSize,
           ),
           widget.widget ?? Container(),
@@ -122,7 +120,8 @@ class FluidsPainter extends CustomPainter {
   final Color particleColor;
   final ParticleShape shape;
 
-  FluidsPainter(this.particles, this.animation, this.particleColor, this.shape) : super(repaint: animation);
+  FluidsPainter(this.particles, this.animation, this.particleColor, this.shape)
+      : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -131,7 +130,8 @@ class FluidsPainter extends CustomPainter {
     for (final particle in particles) {
       particle.update(size);
       if (shape == ParticleShape.circle) {
-        canvas.drawCircle(Offset(particle.x, particle.y), particle.radius, paint);
+        canvas.drawCircle(
+            Offset(particle.x, particle.y), particle.radius, paint);
       } else {
         canvas.drawRect(
           Rect.fromCenter(
@@ -173,4 +173,13 @@ class Particle {
     if (x < 0 || x > size.width) dx *= -1;
     if (y < 0 || y > size.height) dy *= -1;
   }
+}
+
+/// Function for updating particles, used with compute().
+List<Particle> updateParticles(List<Particle> particles) {
+  for (var particle in particles) {
+    particle
+        .update(Size(particle.screenSize.width, particle.screenSize.height));
+  }
+  return particles;
 }
