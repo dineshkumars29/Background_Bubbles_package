@@ -1,6 +1,6 @@
 name: background_bubbles
 description: "Our library offers a seamless solution for generating dynamic animations featuring randomly moving particles."
-version: 1.0.1+1
+version: 1.0.1+2
 homepage: https://github.com/dineshkumars29/Background_Bubbles_package
 repository: https://github.com/dineshkumars29/Background_Bubbles_package
 issue_tracker: https://github.com/dineshkumars29/Background_Bubbles_package/issues
@@ -22,7 +22,7 @@ dev_dependencies:
 license: MIT
 
 # Add example for pub.dev
-example: example
+example: example/lib/main.dart
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

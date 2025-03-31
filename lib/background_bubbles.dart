@@ -8,7 +8,7 @@ import 'dart:async';
 /// A widget that displays an animated background of moving particles.
 class BubblesAnimation extends StatefulWidget {
   const BubblesAnimation({
-    Key? key,
+    super.key,
     this.particleCount,
     this.particleColor = Colors.red,
     this.particleRadius,
@@ -16,7 +16,7 @@ class BubblesAnimation extends StatefulWidget {
     this.widget,
     this.particleSpeed = 0.5,
     this.shape = ParticleShape.circle,
-  }) : super(key: key);
+  });
 
   /// Number of particles in the animation.
   final int? particleCount;
