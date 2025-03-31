@@ -41,8 +41,9 @@ To implement background bubbles spanning the entire screen using animation in a 
 ```
 
 Background_Bubbles_package/
-  lib/
-    main.dart
+  example/
+    lib/
+      main.dart
 
 ```
 
@@ -166,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 📸 Screenshots
 
-<img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_1.gif" alt="Colorful animated bubbles floating in the background" width="500" height="1000">
+<img src="https://raw.githubusercontent.com/dineshkumars29/Background_Bubbles/master/assets/background_bubble_1.gif" alt="Colorful animated bubbles floating in the background" width="250" height="500">
 
 ## Features
 

@@ -20,7 +20,7 @@ class _BubblesState extends State<Bubbles> {
             particleRadius: 25.0,
             particleSpeed: 2.0,
             shape: ParticleShape.circle,
-            backgroundColor: Colors.blueAccent.withOpacity(0.5),
+            backgroundColor: Colors.blueAccent,
             widget: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -76,8 +76,6 @@ class _BubblesState extends State<Bubbles> {
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              // padding:
-                              //     EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               textStyle: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                           child: const Text(

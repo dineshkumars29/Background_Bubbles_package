@@ -21,3 +21,7 @@
 ## 1.0.1
 
 * web support.
+
+## 1.0.1+1
+
+* Bug fixes.
