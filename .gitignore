@@ -30,4 +30,4 @@ build/
 
 # Ignore example folder build artifacts
 /example/.dart_tool/
-/example/pubspec.lock
+# /example/pubspec.lock
